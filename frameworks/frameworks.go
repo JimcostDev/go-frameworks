@@ -8,7 +8,7 @@ import (
 // Ejecuta todos los servidores en goroutines
 func RunAll() {
 	var wg sync.WaitGroup
-	wg.Add(3) // Cantidad de frameworks
+	wg.Add(4) // Cantidad de frameworks
 
 	go func() {
 		defer wg.Done()
@@ -26,6 +26,13 @@ func RunAll() {
 		defer wg.Done()
 		fmt.Println("Starting Fiber...")
 		Fiber()
+	}()
+
+	// sin framework
+	go func() {
+		defer wg.Done()
+		fmt.Println("Starting Server in Go...")
+		SinFramework()
 	}()
 
 	wg.Wait()

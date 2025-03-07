@@ -9,6 +9,6 @@ func main() {
 	// frameworks.RunAll()
 
 	// Ejecuta el un framework en especifico
-	frameworks.Gin()
+	frameworks.Fiber()
 
 }

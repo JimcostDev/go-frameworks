@@ -1,18 +1,23 @@
 package frameworks
 
 import (
-	"fmt"
+	"log"
 
+	"github.com/JimcostDev/go-frameworks/routes"
 	"github.com/gofiber/fiber/v2"
 )
 
 func Fiber() {
 	app := fiber.New()
 
+	// Configura las rutas
+	routes.SetupRoutes(app)
+
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello from Fiber")
+		return c.JSON(fiber.Map{"message": "Hello world"})
 	})
 
-	fmt.Println("Fiber running on :3003")
-	app.Listen(":3003")
+	port := ":3003"
+	log.Printf("Servidor corriendo en el puerto: %s", port)
+	log.Fatal(app.Listen(port))
 }
